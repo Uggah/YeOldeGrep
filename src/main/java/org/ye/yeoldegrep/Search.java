@@ -20,7 +20,7 @@ public class Search {
      * @param paths Array of file paths
      */
 
-    public static void standardSearch (String query, Argument[] args, Path[] paths) {
+    public static void search (String query, Argument[] args, Path[] paths) {
 
         File[] files= new File[paths.length];
 
@@ -36,10 +36,49 @@ public class Search {
             caseInsensitiveSearch(query, files);
         } else if (argList.contains(Argument.FilesWithMatches)){
             matchSearch(query, files);
+        } else {
+            standardSearch(query, files);
         }
     }
 
+    /**
+     * This method searches for the given query in the given files while staying case sensitive.
+     *
+     * @param query Search query
+     * @param files Files to be searched
+     */
 
+    private static void standardSearch (String query, File[] files) {
+        for(File f : files){
+
+            try {
+                Scanner fileScanner = new Scanner(f);
+                String fileContents = "";
+
+                while(fileScanner.hasNext()){
+                    fileContents = fileContents.concat(fileScanner.next() + " ");
+                }
+
+                String[] fileContentsArray = fileContents.split(" ");
+                String[] fileContentsLines = fileContents.split("\n");
+
+                for(String s : fileContentsArray){
+                    if(s.equals(query)){
+                        String line = "";
+                        for(String fileLine : fileContentsLines){
+                            if(fileLine.contains(s)){
+                                line = fileLine;
+                            }
+                        }
+                        System.out.println(f.getName() + ":" + line);
+                    }
+                }
+            } catch (FileNotFoundException e){
+                System.err.println("YeOldeGrep: " + f.getName() + ": File not found");
+            }
+
+        }
+    }
 
     private static void caseInsensitiveSearch (String query, File[] files){
 
@@ -54,7 +93,7 @@ public class Search {
     }
 
     /**
-     * A method which scans all files and prints those files containing the query or a derivative thereof to console.
+     * A method which scans all files and prints those files containing the query case insensitively.
      *
      * @param query Search query
      * @param files Files to be searched

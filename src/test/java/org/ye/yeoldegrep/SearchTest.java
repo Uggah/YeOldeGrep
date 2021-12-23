@@ -34,12 +34,34 @@ public class SearchTest {
         Argument[] args = new Argument[]{Argument.IgnoreCase, Argument.FilesWithMatches};
 
         // Test search with actual files
-        Search.standardSearch("Test", args, paths);
+        Search.search("tEst", args, paths);
         Assert.assertEquals("TestFile1\n", outContent.toString());
 
         // Test search with non-existent files
-        Search.standardSearch("Test", args, faultyPaths);
-        Assert.assertEquals("YeOldeGrep: NonExistentFile1: File not found\n" + "YeOldeGrep: NonExistentFile2: File not found\n", errContent.toString());
+        Search.search("Test", args, faultyPaths);
+        Assert.assertEquals("""
+                YeOldeGrep: NonExistentFile1: File not found
+                YeOldeGrep: NonExistentFile2: File not found
+                """, errContent.toString());
+    }
+
+    @Test
+    public void standardSearchTest(){
+        // Create variables to test the search with.
+        Path[] paths = new Path[]{Paths.get("src/test/resources/TestFile1"), Paths.get("src/test/resources/TestFile2")};
+        Path[] faultyPaths = new Path[]{Paths.get("src/test/resources/NonExistentFile1"), Paths.get("\"src/test/resources/NonExistentFile2")};
+        Argument[] args = new Argument[]{};
+
+        // Test search with actual files
+        Search.search("Test", args, paths);
+        Assert.assertEquals("TestFile1:Dies ist ein Test \n", outContent.toString());
+
+        // Test search with non-existent files
+        Search.search("Test", args, faultyPaths);
+        Assert.assertEquals("""
+                YeOldeGrep: NonExistentFile1: File not found
+                YeOldeGrep: NonExistentFile2: File not found
+                """, errContent.toString());
     }
 
 }
