@@ -108,7 +108,7 @@ public class Search {
                 String fileContents = "";
 
                 while(fileScanner.hasNext()){
-                    fileContents = fileContents.concat(fileScanner.next());
+                    fileContents = fileContents.concat(fileScanner.next() + " ");
                 }
 
                 String[] fileContentsArray = fileContents.split(" ");
