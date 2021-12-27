@@ -1,6 +1,6 @@
 package org.ye.yeoldegrep;
 
-import org.ye.yeoldegrep.utils.Argument;
+import org.ye.yeoldegrep.utils.Option;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,11 +16,11 @@ public class Search {
      * after converting the data types to a more usuable format.</p>
      *
      * @param query Search query
-     * @param args Array of arguments
+     * @param opts Array of options
      * @param paths Array of file paths
      */
 
-    public static void search (String query, Argument[] args, Path[] paths) {
+    public static void search (String query, Option[] opts, Path[] paths) {
 
         File[] files= new File[paths.length];
 
@@ -28,13 +28,13 @@ public class Search {
             files[f] = paths[f].toFile();
         }
 
-        List<Argument> argList = Arrays.asList(args); //TODO: Change this to use the given array instead of a list...
+        List<Option> optList = Arrays.asList(opts); //TODO: Change this to use the given array instead of a list...
 
-        if (argList.contains(Argument.IgnoreCase) && argList.contains(Argument.FilesWithMatches)){
+        if (optList.contains(Option.IgnoreCase) && optList.contains(Option.FilesWithMatches)){
             caseInsensitiveMatchSearch(query, files);
-        } else if(argList.contains(Argument.IgnoreCase)){
+        } else if(optList.contains(Option.IgnoreCase)){
             caseInsensitiveSearch(query, files);
-        } else if (argList.contains(Argument.FilesWithMatches)){
+        } else if (optList.contains(Option.FilesWithMatches)){
             matchSearch(query, files);
         } else {
             standardSearch(query, files);

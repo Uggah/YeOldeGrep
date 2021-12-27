@@ -3,7 +3,7 @@ package org.ye.yeoldegrep;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.ye.yeoldegrep.utils.Argument;
+import org.ye.yeoldegrep.utils.Option;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ public class SearchTest {
         // Create variables to test the search with.
         Path[] paths = new Path[]{Paths.get("src/test/resources/TestFile1"), Paths.get("src/test/resources/TestFile2")};
         Path[] faultyPaths = new Path[]{Paths.get("src/test/resources/NonExistentFile1"), Paths.get("\"src/test/resources/NonExistentFile2")};
-        Argument[] args = new Argument[]{Argument.IgnoreCase, Argument.FilesWithMatches};
+        Option[] args = new Option[]{Option.IgnoreCase, Option.FilesWithMatches};
 
         // Test search with actual files
         Search.search("tEst", args, paths);
@@ -50,7 +50,7 @@ public class SearchTest {
         // Create variables to test the search with.
         Path[] paths = new Path[]{Paths.get("src/test/resources/TestFile1"), Paths.get("src/test/resources/TestFile2")};
         Path[] faultyPaths = new Path[]{Paths.get("src/test/resources/NonExistentFile1"), Paths.get("\"src/test/resources/NonExistentFile2")};
-        Argument[] args = new Argument[]{};
+        Option[] args = new Option[]{};
 
         // Test search with actual files
         Search.search("Test", args, paths);
