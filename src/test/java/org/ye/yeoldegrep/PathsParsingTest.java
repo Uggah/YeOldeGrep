@@ -2,6 +2,7 @@ package org.ye.yeoldegrep;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.ye.yeoldegrep.exceptions.MissingFilePathException;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 
 import java.nio.file.Path;
@@ -18,9 +19,9 @@ public class PathsParsingTest {
         String[] args5 = new String[]{"-il"};
         Assert.assertArrayEquals(new Path[]{Paths.get("file")}, ArgumentParser.getFilePaths(args1));
         Assert.assertArrayEquals(new Path[]{Paths.get("/someFile")}, ArgumentParser.getFilePaths(args2));
-        Assert.assertArrayEquals(null, ArgumentParser.getFilePaths(args3));
-        Assert.assertArrayEquals(null, ArgumentParser.getFilePaths(args4));
-        Assert.assertArrayEquals(null, ArgumentParser.getFilePaths(args5));
+        Assert.assertThrows(MissingFilePathException.class, () -> { ArgumentParser.getFilePaths(args3); });
+        Assert.assertThrows(MissingFilePathException.class, () -> { ArgumentParser.getFilePaths(args4); });
+        Assert.assertThrows(MissingFilePathException.class, () -> { ArgumentParser.getFilePaths(args5); });
     }
 
     @Test
@@ -33,8 +34,8 @@ public class PathsParsingTest {
         String[] args5 = new String[]{"-il"};
         Assert.assertArrayEquals(new Path[]{Paths.get("/file"),Paths.get("more/someOtherFile"),Paths.get("/eeeh/evenMoreFiles")}, ArgumentParser.getFilePaths(args1));
         Assert.assertArrayEquals(new Path[]{Paths.get("file"),Paths.get("someOtherFile")}, ArgumentParser.getFilePaths(args2));
-        Assert.assertArrayEquals(null, ArgumentParser.getFilePaths(args3));
+        Assert.assertThrows(MissingFilePathException.class, () -> { ArgumentParser.getFilePaths(args3); });
         Assert.assertArrayEquals(new Path[]{Paths.get("someStrangeStuff")}, ArgumentParser.getFilePaths(args4));
-        Assert.assertArrayEquals(null, ArgumentParser.getFilePaths(args5));
+        Assert.assertThrows(MissingFilePathException.class, () -> { ArgumentParser.getFilePaths(args5); });
     }
 }

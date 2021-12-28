@@ -2,6 +2,7 @@ package org.ye.yeoldegrep;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.ye.yeoldegrep.exceptions.InvalidOptionException;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 import org.ye.yeoldegrep.utils.Option;
 
@@ -14,9 +15,9 @@ public class OptionParsingTest {
         String[] args3 = new String[]{"-il"};
         String[] args4 = new String[]{"-iw"};
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args1));
-        Assert.assertArrayEquals(null, ArgumentParser.getOpts(args2));
+        Assert.assertThrows(InvalidOptionException.class, () -> { ArgumentParser.getOpts(args2); });
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args3));
-        Assert.assertArrayEquals(null, ArgumentParser.getOpts(args4));
+        Assert.assertThrows(InvalidOptionException.class, () -> { ArgumentParser.getOpts(args4); });
     }
     @Test
     public void optionParsingMixedArguments(){
@@ -28,7 +29,7 @@ public class OptionParsingTest {
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args1));
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args2));
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args3));
-        Assert.assertArrayEquals(null, ArgumentParser.getOpts(args4));
+        Assert.assertThrows(InvalidOptionException.class, () -> { ArgumentParser.getOpts(args4); });
     }
     @Test
     public void optionParsingLongAliases(){
@@ -40,7 +41,7 @@ public class OptionParsingTest {
         Assert.assertArrayEquals(new Option[]{Option.IgnoreCase, Option.FilesWithMatches}, ArgumentParser.getOpts(args1));
         Assert.assertArrayEquals(new Option[]{Option.FilesWithMatches}, ArgumentParser.getOpts(args2));
         Assert.assertArrayEquals(new Option[]{Option.FilesWithMatches, Option.IgnoreCase}, ArgumentParser.getOpts(args3));
-        Assert.assertArrayEquals(null, ArgumentParser.getOpts(args4));
+        Assert.assertThrows(InvalidOptionException.class, () -> { ArgumentParser.getOpts(args4); });
     }
     @Test
     public void optionParsingDuplicates(){

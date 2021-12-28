@@ -2,6 +2,7 @@ package org.ye.yeoldegrep;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.ye.yeoldegrep.exceptions.MissingQueryException;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 
 public class QueryParsingTest {
@@ -15,8 +16,8 @@ public class QueryParsingTest {
         String[] args5 = new String[]{"-il"};
         Assert.assertEquals("query", ArgumentParser.getQuery(args1));
         Assert.assertEquals("query", ArgumentParser.getQuery(args2));
-        Assert.assertEquals(null, ArgumentParser.getQuery(args3));
+        Assert.assertThrows(MissingQueryException.class, () -> { ArgumentParser.getQuery(args3); });
         Assert.assertEquals("/file", ArgumentParser.getQuery(args4));
-        Assert.assertEquals(null, ArgumentParser.getQuery(args5));
+        Assert.assertThrows(MissingQueryException.class, () -> { ArgumentParser.getQuery(args5); });
     }
 }
