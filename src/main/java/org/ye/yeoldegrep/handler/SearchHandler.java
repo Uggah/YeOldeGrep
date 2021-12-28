@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class with Methods to handle the actual grep-search
+ */
 public class SearchHandler {
 
     /**
