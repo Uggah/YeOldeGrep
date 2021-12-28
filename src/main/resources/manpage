@@ -1,0 +1,19 @@
+Synopsis
+    grep [OPTIONS] QUERY [FILE...]
+    grep [OPTIONS] [-e QUERY | -f FILE] [FILE...]
+
+Description
+    grep searches the named input FILEs for lines containing a match to the given QUERY. By default, grep prints the matching lines.
+
+Generic Program Information:
+    --help
+    Print a usage message briefly summarizing these command-line options and the bug-reporting address, then exit.
+
+Options:
+    Matching Control:
+        -i, --ignore-case
+        Ignore case distinctions in the QUERY.
+
+    General Output Control:
+        -l, --files-with-matches
+        Suppress normal output; instead print the name of each input file from which output would normally have been printed. The scanning will stop on the first match.
