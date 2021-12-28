@@ -1,4 +1,4 @@
-package org.ye.yeoldegrep;
+package org.ye.yeoldegrep.handler;
 
 import org.ye.yeoldegrep.utils.Option;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Search {
+public class SearchHandler {
 
     /**
      * <p>This method hands over the search request to the responsible method
