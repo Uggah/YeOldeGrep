@@ -1,5 +1,8 @@
 package org.ye.yeoldegrep.parser;
 
+import org.ye.yeoldegrep.exceptions.InvalidOptionException;
+import org.ye.yeoldegrep.exceptions.MissingFilePathException;
+import org.ye.yeoldegrep.exceptions.MissingQueryException;
 import org.ye.yeoldegrep.utils.Option;
 
 import java.nio.file.InvalidPathException;
@@ -18,13 +21,13 @@ public class ArgumentParser {
     /**
      * <p>Parses the raw arguments given by a user into an Option-Array.</p>
      *
-     * Returns an empty list if no Option was given.<br>
-     * Returns null if an invalid Option was given.
+     * Returns an empty list if no Option was given.
      *
      * @param rawArgs The users arguments
-     * @return An Array of Option-Objects or null
+     * @return An Array of Option-Objects
+     * @throws InvalidOptionException if a given option was invalid
      */
-    public static Option[] getOpts(String[] rawArgs) {
+    public static Option[] getOpts(String[] rawArgs) throws InvalidOptionException {
         List<Option> args = new ArrayList<Option>();
 
         for(String rawArg : rawArgs) {
@@ -50,20 +53,19 @@ public class ArgumentParser {
             // Return list if no null in it
             return finalArgs.toArray(new Option[0]);
         }
-        // Return null if an argument couldn't be parsed
-        return null;
+        // Throw exception if invalid option was given
+        throw new InvalidOptionException();
     }
 
     /**
      * <p>Returns the query-String given by the users arguments.<br>
      * This is expected to be the first non-option argument.</p>
      *
-     * Returns null if there is no query given.
-     *
      * @param rawArgs The users arguments
      * @return The query-String or null
+     * @throws MissingQueryException if there was no query given
      */
-    public static String getQuery(String[] rawArgs) {
+    public static String getQuery(String[] rawArgs) throws MissingQueryException {
         //Find first non-option-argument as that is supposed to be query
         for(String rawArg : rawArgs) {
             if(rawArg.startsWith("-")) {
@@ -71,19 +73,20 @@ public class ArgumentParser {
             }
             return rawArg;
         }
-        return null;
+
+        //Throw exception if there is no query
+        throw new MissingQueryException();
     }
 
     /**
      * <p>Returns an Array with all File-Paths that ought to be searched</p>
      *
-     * Returns null if an invalid path was given.<br>
-     * Returns null if no path was given.
-     *
      * @param rawArgs The users arguments
      * @return An Array of Path-Objects or null
+     * @throws InvalidPathException if the given path was invalid
+     * @throws MissingFilePathException if there was no file/path given
      */
-    public static Path[] getFilePaths(String[] rawArgs) {
+    public static Path[] getFilePaths(String[] rawArgs) throws InvalidPathException, MissingFilePathException {
         List<Path> paths = new ArrayList<Path>();
 
         //Find all non-option-arguments after the first one
@@ -97,20 +100,16 @@ public class ArgumentParser {
                 continue;
             }
 
-            try {
-                if(rawArg.startsWith("/") || rawArg.substring(1).startsWith(":\\")) {
-                    // Absolute path
-                    paths.add(Paths.get(rawArg));
-                } else {
-                    // Relative path given -> Convert to absolute path
-                    if(rawArg.startsWith("./")) {
-                        rawArg = rawArg.substring(2);
-                    }
-                    paths.add(Paths.get(rawArg));
+
+            if(rawArg.startsWith("/") || rawArg.substring(1).startsWith(":\\")) {
+                // Absolute path
+                paths.add(Paths.get(rawArg));
+            } else {
+                // Relative path given -> Convert to absolute path
+                if(rawArg.startsWith("./")) {
+                    rawArg = rawArg.substring(2);
                 }
-            } catch (InvalidPathException e) {
-                // Invalid-Path -> Return null
-                return null;
+                paths.add(Paths.get(rawArg));
             }
         }
 
@@ -124,6 +123,6 @@ public class ArgumentParser {
             return finalPaths.toArray(new Path[0]);
         }
         // Return null if there was no Path/an invalid one
-        return null;
+        throw new MissingFilePathException();
     }
 }
