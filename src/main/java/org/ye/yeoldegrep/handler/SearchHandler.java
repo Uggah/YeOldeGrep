@@ -62,18 +62,19 @@ public class SearchHandler {
                     fileContents = fileContents.concat(fileScanner.nextLine() + "\n");
                 }
 
-                String[] fileContentsArray = fileContents.split(" ");
+                String[] fileContentsArray = fileContents.split("[ \n]");
                 String[] fileContentsLines = fileContents.split("\n");
 
                 for(String s : fileContentsArray){
                     if(s.contains(query)){
-                        String line = "";
+                        String line;
                         for(String fileLine : fileContentsLines){
                             if(fileLine.contains(query)){
                                 line = fileLine;
+                                System.out.println(f.getName() + ":" + line);
                             }
                         }
-                        System.out.println(f.getName() + ":" + line);
+                        break;
                     }
                 }
             } catch (FileNotFoundException e){
