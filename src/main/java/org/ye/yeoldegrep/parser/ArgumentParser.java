@@ -3,6 +3,7 @@ package org.ye.yeoldegrep.parser;
 import org.ye.yeoldegrep.exceptions.InvalidOptionException;
 import org.ye.yeoldegrep.exceptions.MissingFilePathException;
 import org.ye.yeoldegrep.exceptions.MissingQueryException;
+import org.ye.yeoldegrep.handler.YeHandler;
 import org.ye.yeoldegrep.utils.Option;
 
 import java.nio.file.InvalidPathException;
@@ -69,6 +70,10 @@ public class ArgumentParser {
         //Find first non-option-argument as that is supposed to be query
         for(String rawArg : rawArgs) {
             if(rawArg.startsWith("-")) {
+                //ye
+                if(rawArg.equals("--ye")) {
+                    YeHandler.ye();
+                }
                 continue;
             }
             return rawArg;

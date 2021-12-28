@@ -1,6 +1,7 @@
 package org.ye.yeoldegrep;
 
 import org.ye.yeoldegrep.handler.HelpHandler;
+import org.ye.yeoldegrep.handler.SearchHandler;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class Main {
             if(Arrays.stream(args).anyMatch("--help"::equals)) {
                 HelpHandler.sendHelp();
             } else {
-                Search.search(ArgumentParser.getQuery(args), ArgumentParser.getOpts(args), ArgumentParser.getFilePaths(args));
+                SearchHandler.search(ArgumentParser.getQuery(args), ArgumentParser.getOpts(args), ArgumentParser.getFilePaths(args));
             }
         }
         catch (Exception e){

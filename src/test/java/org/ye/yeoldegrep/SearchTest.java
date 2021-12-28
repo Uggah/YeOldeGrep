@@ -3,6 +3,7 @@ package org.ye.yeoldegrep;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.ye.yeoldegrep.handler.SearchHandler;
 import org.ye.yeoldegrep.utils.Option;
 
 import java.io.ByteArrayOutputStream;
@@ -34,11 +35,11 @@ public class SearchTest {
         Option[] args = new Option[]{Option.IgnoreCase, Option.FilesWithMatches};
 
         // Test search with actual files
-        Search.search("tEst", args, paths);
+        SearchHandler.search("tEst", args, paths);
         Assert.assertEquals("TestFile1\n", outContent.toString());
 
         // Test search with non-existent files
-        Search.search("Test", args, faultyPaths);
+        SearchHandler.search("Test", args, faultyPaths);
         Assert.assertEquals("""
                 YeOldeGrep: NonExistentFile1: File not found
                 YeOldeGrep: NonExistentFile2: File not found
@@ -53,11 +54,11 @@ public class SearchTest {
         Option[] args = new Option[]{Option.IgnoreCase};
 
         // Test search with actual files
-        Search.search("tEst", args, paths);
+        SearchHandler.search("tEst", args, paths);
         Assert.assertEquals("TestFile1:Dies ist ein Test!\n", outContent.toString());
 
         // Test search with non-existent files
-        Search.search("Test", args, faultyPaths);
+        SearchHandler.search("Test", args, faultyPaths);
         Assert.assertEquals("""
                 YeOldeGrep: NonExistentFile1: File not found
                 YeOldeGrep: NonExistentFile2: File not found
@@ -72,11 +73,11 @@ public class SearchTest {
         Option[] args = new Option[]{Option.FilesWithMatches};
 
         // Test search with actual files
-        Search.search("Test", args, paths);
+        SearchHandler.search("Test", args, paths);
         Assert.assertEquals("TestFile1\n", outContent.toString());
 
         // Test search with non-existent files
-        Search.search("Test", args, faultyPaths);
+        SearchHandler.search("Test", args, faultyPaths);
         Assert.assertEquals("""
                 YeOldeGrep: NonExistentFile1: File not found
                 YeOldeGrep: NonExistentFile2: File not found
@@ -91,11 +92,11 @@ public class SearchTest {
         Option[] args = new Option[]{};
 
         // Test search with actual files
-        Search.search("Test", args, paths);
+        SearchHandler.search("Test", args, paths);
         Assert.assertEquals("TestFile1:Dies ist ein Test!\n", outContent.toString());
 
         // Test search with non-existent files
-        Search.search("Test", args, faultyPaths);
+        SearchHandler.search("Test", args, faultyPaths);
         Assert.assertEquals("""
                 YeOldeGrep: NonExistentFile1: File not found
                 YeOldeGrep: NonExistentFile2: File not found
