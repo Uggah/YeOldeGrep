@@ -5,6 +5,7 @@ package org.ye.yeoldegrep.utils;
  */
 
 public enum Option {
+    
     /**
      * Ignore-Case-Option
      */

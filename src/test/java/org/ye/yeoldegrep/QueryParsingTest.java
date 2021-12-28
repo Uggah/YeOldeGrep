@@ -7,7 +7,7 @@ import org.ye.yeoldegrep.parser.ArgumentParser;
 public class QueryParsingTest {
     @Test
     public void queryParsingTest(){
-        //Test Empty
+        //Test some argument-variations
         String[] args1 = new String[]{"-il","query","/file"};
         String[] args2 = new String[]{"query","/file"};
         String[] args3 = new String[]{};
