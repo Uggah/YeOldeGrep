@@ -80,16 +80,54 @@ public class Search {
         }
     }
 
+    /**
+     * This method searches<em>case insensitive</em> for the given query in the given files.
+     *
+     * @param query Search query
+     * @param files Files to be searched
+     */
     private static void caseInsensitiveSearch (String query, File[] files){
 
-        //TODO: Implementation & Documentation
+        for(File f : files){
 
+            try {
+                Scanner fileScanner = new Scanner(f);
+
+                while(fileScanner.hasNextLine()){
+                    String line = fileScanner.nextLine();
+                    String lowerCaseLine = line.toLowerCase();
+                    if(lowerCaseLine.contains(query.toLowerCase())){
+                        System.out.println(f.getName() + ":" + line);
+                    }
+                }
+            } catch (FileNotFoundException e){
+                System.err.println("YeOldeGrep: " + f.getName() + ": File not found");
+            }
+        }
     }
 
+    /**
+     * A method which scans all files and prints those files containing the query.
+     *
+     * @param query Search query
+     * @param files Files to be searched
+     */
     private static void matchSearch(String query, File[] files){
 
-        //TODO: Implementation & Documentation
+        for(File f : files){
 
+            try {
+                Scanner fileScanner = new Scanner(f);
+
+                while(fileScanner.hasNextLine()){
+                    if(fileScanner.nextLine().contains(query)){
+                        System.out.println(f.getName());
+                    }
+                }
+            } catch (FileNotFoundException e){
+                System.err.println("YeOldeGrep: " + f.getName() + ": File not found");
+            }
+        }
     }
 
     /**
