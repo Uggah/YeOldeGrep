@@ -39,6 +39,8 @@ After cloning the repository you just use the following command within the creat
 
 `mvn package`
 
+When the process of building finishes, you should find the jar-file in the folder `target`
+
 ### How to use
 When the JRE is present and installed correctly you should be able to use the following command structure:
 
