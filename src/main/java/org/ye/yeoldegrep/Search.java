@@ -122,6 +122,7 @@ public class Search {
                 while(fileScanner.hasNextLine()){
                     if(fileScanner.nextLine().contains(query)){
                         System.out.println(f.getName());
+                        break;
                     }
                 }
             } catch (FileNotFoundException e){
