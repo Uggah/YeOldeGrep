@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
  */
 public class HelpHandler {
 
+    private final static String INSTRUCTION = "Usage: java -jar YeOldeGrep-0.1.jar [OPTIONS] QUERY [FILE...]\n" +
+            "Try 'java -jar YeOldeGrep-0.1.jar --help' for more information.";
+
     /**
      * Method that sends the --help-string (a man-page-excerpt)
      */
@@ -23,8 +26,10 @@ public class HelpHandler {
         }
     }
 
+    /**
+     * <p>Method that prints short usage instructions</p>
+     */
     public static void printInstructions(){
-        System.out.println("Usage: java -jar YeOldeGrep-0.1.jar [OPTION] QUERY [FILE]\n" +
-                "Try 'java -jar YeOldeGrep-0.1.jar --help' for more information.");
+        System.out.println(INSTRUCTION);
     }
 }
