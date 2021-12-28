@@ -54,7 +54,7 @@ public class SearchTest {
 
         // Test search with actual files
         Search.search("tEst", args, paths);
-        Assert.assertEquals("TestFile1:Dies ist ein Test\n", outContent.toString());
+        Assert.assertEquals("TestFile1:Dies ist ein Test!\n", outContent.toString());
 
         // Test search with non-existent files
         Search.search("Test", args, faultyPaths);
@@ -92,7 +92,7 @@ public class SearchTest {
 
         // Test search with actual files
         Search.search("Test", args, paths);
-        Assert.assertEquals("TestFile1:Dies ist ein Test \n", outContent.toString());
+        Assert.assertEquals("TestFile1:Dies ist ein Test!\n", outContent.toString());
 
         // Test search with non-existent files
         Search.search("Test", args, faultyPaths);

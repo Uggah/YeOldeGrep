@@ -56,17 +56,17 @@ public class Search {
                 String fileContents = "";
 
                 while(fileScanner.hasNext()){
-                    fileContents = fileContents.concat(fileScanner.next() + " ");
+                    fileContents = fileContents.concat(fileScanner.nextLine() + "\n");
                 }
 
                 String[] fileContentsArray = fileContents.split(" ");
                 String[] fileContentsLines = fileContents.split("\n");
 
                 for(String s : fileContentsArray){
-                    if(s.equals(query)){
+                    if(s.contains(query)){
                         String line = "";
                         for(String fileLine : fileContentsLines){
-                            if(fileLine.contains(s)){
+                            if(fileLine.contains(query)){
                                 line = fileLine;
                             }
                         }
@@ -152,7 +152,7 @@ public class Search {
                 String[] fileContentsArray = fileContents.split(" ");
 
                 for(String s : fileContentsArray){
-                    if(s.equalsIgnoreCase(query)){
+                    if(s.toLowerCase().contains(query.toLowerCase())){
                         System.out.println(f.getName());
                     }
                 }
