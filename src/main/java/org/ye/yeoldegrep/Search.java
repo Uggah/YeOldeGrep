@@ -155,6 +155,7 @@ public class Search {
                 for(String s : fileContentsArray){
                     if(s.toLowerCase().contains(query.toLowerCase())){
                         System.out.println(f.getName());
+                        break;
                     }
                 }
             } catch (FileNotFoundException e){
