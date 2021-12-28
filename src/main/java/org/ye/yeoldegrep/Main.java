@@ -1,5 +1,6 @@
 package org.ye.yeoldegrep;
 
+import org.ye.yeoldegrep.exceptions.MissingQueryException;
 import org.ye.yeoldegrep.handler.HelpHandler;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 
@@ -23,7 +24,8 @@ public class Main {
             }
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            HelpHandler.printInstructions();
+            e.printStackTrace();
             System.exit(1);
         }
     }
