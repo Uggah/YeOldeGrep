@@ -81,7 +81,7 @@ public class Search {
     }
 
     /**
-     * This method searches<em>case insensitive</em> for the given query in the given files.
+     * This method searches<em>case insensitively</em> for the given query in the given files.
      *
      * @param query Search query
      * @param files Files to be searched
