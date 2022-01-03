@@ -1,6 +1,6 @@
 Synopsis
-    grep [OPTIONS] QUERY [FILE...]
-    grep [OPTIONS] [-e QUERY | -f FILE] [FILE...]
+    java -jar YeOldeGrep-0.1.jar [OPTIONS] QUERY [FILE...]
+    java -jar YeOldeGrep-0.1.jar [OPTIONS] [-e QUERY | -f FILE] [FILE...]
 
 Description
     grep searches the named input FILEs for lines containing a match to the given QUERY. By default, grep prints the matching lines.
