@@ -1,9 +1,9 @@
 # YeOldeGrep
 
 ## About
-This program was built for a optional uni project for the module "Software Development 1" in the course "Medieninformatik", first semester.
+This program was built for an optional uni project for the module "Software Development 1" in the course "Medieninformatik", first semester.
 
-This program tries to achieve a similarity to the good old unix grep, but does not try to resemble it completely. Thus, a few adjustments to our needs were made.
+This program tries to achieve similar functionality to the good old unix grep, but does not try to resemble it completely. Thus, a few adjustments to our needs were made.
 
 We do not provide any support regarding this project. When our project is ready to submit, it probably won't be updated. 
 
@@ -42,7 +42,7 @@ After cloning the repository you just use the following command within the creat
 When the process of building finishes, you should find the jar-file in the folder `target`
 
 ### How to use
-When the JRE is present and installed correctly you should be able to use the following command structure:
+When the JRE is present and installed correctly you should be able to use the following command structure (provided you are in the `target`-folder):
 
 `java -jar YeOldeGrep-0.1.jar <args>`
 
