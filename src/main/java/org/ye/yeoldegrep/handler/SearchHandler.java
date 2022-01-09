@@ -71,7 +71,11 @@ public class SearchHandler {
                         for(String fileLine : fileContentsLines){
                             if(fileLine.contains(query)){
                                 line = fileLine;
-                                System.out.println(f.getName() + ":" + line);
+                                if(files.length > 1) {
+                                    System.out.println(f.getName() + ":" + line);
+                                } else {
+                                    System.out.println(line);
+                                }
                             }
                         }
                         break;
@@ -101,7 +105,11 @@ public class SearchHandler {
                     String line = fileScanner.nextLine();
                     String lowerCaseLine = line.toLowerCase();
                     if(lowerCaseLine.contains(query.toLowerCase())){
-                        System.out.println(f.getName() + ":" + line);
+                        if(files.length > 1) {
+                            System.out.println(f.getName() + ":" + line);
+                        } else {
+                            System.out.println(line);
+                        }
                     }
                 }
             } catch (FileNotFoundException e){

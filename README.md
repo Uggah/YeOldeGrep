@@ -39,7 +39,8 @@ After cloning the repository you just use the following command within the creat
 
 `mvn package`
 
-When the process of building finishes, you should find the jar-file in the folder `target`
+When the process of building finishes, you should find the jar-file in the folder `target`  
+You can also download a precompiled jar under [releases](https://github.com/Uggah/YeOldeGrep/releases)
 
 ### How to use
 When the JRE is present and installed correctly you should be able to use the following command structure (provided you are in the `target`-folder):
@@ -52,7 +53,7 @@ This program incorporates a bunch of functionality seen in grep. Some is pretty 
 All functions in the following list shall be added to the end of the command seen above.
 
 - `-l <query> <files>`: shows all files in the list of arguments that contain the query.
-- `-i <query> <files>`: shows all lines sorted by file in which the query occurs.
+- `-i <query> <files>`: shows all lines sorted by file in which the query occurs but case-insensitive.
 - `--help`: shows a general help page, summarizing all functions.
 
 ## How to generate javadoc
