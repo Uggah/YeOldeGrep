@@ -31,7 +31,7 @@ public class SearchHandler {
             files[f] = paths[f].toFile();
         }
 
-        List<Option> optList = Arrays.asList(opts); //TODO: Change this to use the given array instead of a list...
+        List<Option> optList = Arrays.asList(opts);
 
         if (optList.contains(Option.IgnoreCase) && optList.contains(Option.FilesWithMatches)){
             caseInsensitiveMatchSearch(query, files);
