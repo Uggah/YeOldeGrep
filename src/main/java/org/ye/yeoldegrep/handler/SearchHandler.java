@@ -85,7 +85,7 @@ public class SearchHandler {
     }
 
     /**
-     * This method searches<em>case insensitively</em> for the given query in the given files.
+     * This method searches for the given query in the given files <em>case insensitively</em>.
      *
      * @param query Search query
      * @param files Files to be searched
