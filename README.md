@@ -55,7 +55,7 @@ All functions in the following list shall be added to the end of the command see
 - `-i <query> <files>`: shows all lines sorted by file in which the query occurs.
 - `--help`: shows a general help page, summarizing all functions.
 
-## How to build javadoc
+## How to generate javadoc
 This program is fully documented using javadoc. To generate the javadoc-files you may navigate to the project folder and run the following command:
 
 `mvn javadoc:javadoc`
