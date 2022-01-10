@@ -4,7 +4,13 @@ import org.ye.yeoldegrep.handler.HelpHandler;
 import org.ye.yeoldegrep.handler.SearchHandler;
 import org.ye.yeoldegrep.parser.ArgumentParser;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Main class which acts as interface between the other classes
@@ -16,7 +22,18 @@ public class Main {
      *
      * @param args User input
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        List<String> allArgs = new ArrayList<String>();
+        for(String in:args) {
+            allArgs.add(in);
+        }
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String curLine = null;
+        while( (curLine = input.readLine()) != null ) {
+            allArgs.add(curLine);
+        }
+        args = allArgs.toArray(new String[0]);
+
         try {
             if(Arrays.stream(args).anyMatch("--help"::equals)) {
                 HelpHandler.sendHelp();
